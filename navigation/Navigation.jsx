@@ -4,7 +4,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { Button } from 'react-native';
 
 import Contacts from '../screens/Contacts';
-import TabTwoScreen from '../screens/TabTwoScreen';
+import DetailsScreen from "../screens/Details"
 import AddContactModal from '../screens/AddContactModal'
 
 const Stack = createNativeStackNavigator();
@@ -25,6 +25,7 @@ export const Navigation = () => {
             )
             })}
         />
+        <Stack.Screen name="Details" component={DetailsScreen} />
         <Stack.Group screenOptions={{ presentation: 'modal' }}>
           <Stack.Screen 
             name="Modal" 

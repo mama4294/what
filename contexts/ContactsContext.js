@@ -1,5 +1,11 @@
 import { useState, createContext } from "react";
 
+export const defaultContactValues = {
+  firstName: "",
+  lastName: "",
+  phoneNumber: "",
+};
+
 export const ContactsContext = createContext({
   contacts: [],
   setContacts: () => null,
