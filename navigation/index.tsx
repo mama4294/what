@@ -5,6 +5,7 @@
  */
 import { FontAwesome } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { AntDesign } from '@expo/vector-icons';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
@@ -12,7 +13,7 @@ import { ColorSchemeName, Pressable } from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import ModalScreen from '../screens/ModalScreen';
+import AddContactModal from '../screens/AddContactModal';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import Contacts from '../screens/Contacts';
 import TabTwoScreen from '../screens/TabTwoScreen';
@@ -41,7 +42,7 @@ function RootNavigator() {
       <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
-        <Stack.Screen name="Modal" component={ModalScreen} />
+        <Stack.Screen name="Modal" component={AddContactModal} options={{title: "Add Contact"}}/>
       </Stack.Group>
     </Stack.Navigator>
   );
@@ -67,7 +68,7 @@ function BottomTabNavigator() {
         component={Contacts}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
           title: 'Contacts',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => <AntDesign name="contacts" size={24} color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}

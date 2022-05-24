@@ -1,11 +1,9 @@
-import { FlatList, StyleSheet } from 'react-native';
-import { useState } from 'react';
-
-import EditScreenInfo from '../components/EditScreenInfo';
+import { FlatList, StyleSheet, Button, Alert } from 'react-native';
 import { Text, View } from '../components/Themed';
-import { RootTabScreenProps } from '../types';
+import { useContext } from 'react';
+import { ContactsContext } from '../contexts/ContactsContext';
 
-export default function Contancts({ navigation }: RootTabScreenProps<'TabOne'>) {
+export default function Contancts({ navigation }) {
   return (
     <View>
       <Text style={styles.searchBar}>Search...</Text>
@@ -15,36 +13,10 @@ export default function Contancts({ navigation }: RootTabScreenProps<'TabOne'>) 
   );
 }
 
-export type Contact = {
-  id: number;
-  firstName: string;
-  lastName?: string;
-  phoneNumber?: string;
-}
 
-const defaultContacts = [
-  {
-    id:1,
-    firstName: "Genny",
-    lastName: "Bennett",
-    phoneNumber: "123-456-7890"
-  },
-  {
-    id:2,
-    firstName: "Chris",
-    lastName: "Hafrel",
-    phoneNumber: "123-456-7890"},
-  {
-    id:3,
-    firstName: "Jessa",
-    lastName: "Write",
-    phoneNumber: "123-456-7890"
-  },
-]
 
 export const ContactsGallery = () => {
-  const [contacts, setContacts] = useState<Contact[]>(defaultContacts);
-
+  const {contacts} = useContext(ContactsContext);
   return(
     <FlatList
       style={styles.gallery}
@@ -57,8 +29,10 @@ export const ContactsGallery = () => {
   )
 }
 
-const ContactItem = ({data}: {data: Contact}) => {
-  const {firstName, lastName, phoneNumber} = data;
+
+
+const ContactItem = ({data}) => {
+  const {firstName, lastName} = data;
   return(
   <View
     style={styles.contact}>
